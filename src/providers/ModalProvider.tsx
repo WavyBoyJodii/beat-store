@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import AuthModal from '@/components/AuthModal';
 import { ProductWithPrice } from '@/types';
+import UploadModal from '@/components/UploadModal';
 
 interface ModalProviderProps {
   products: ProductWithPrice[];
@@ -23,6 +24,7 @@ const ModalProvider = () => {
   return (
     <>
       <AuthModal />
+      <UploadModal />
     </>
   );
 };

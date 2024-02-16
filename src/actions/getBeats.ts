@@ -10,7 +10,7 @@ const getBeats = async (): Promise<Beat[]> => {
 
   const { data, error } = await supabase
     .from('beats')
-    .select('*, prices(*)')
+    .select('*, prices(*, products(*))')
     .order('created_at', { ascending: false });
 
   if (error) {

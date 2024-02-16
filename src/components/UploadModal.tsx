@@ -31,6 +31,7 @@ const UploadModal = () => {
       bpm: undefined,
       beat: null,
       image: null,
+      priceId: '',
     },
   });
 
@@ -92,6 +93,7 @@ const UploadModal = () => {
           bpm: values.bpm,
           image_path: imageData.path,
           beat_path: beatData.path,
+          price_id: values.priceId,
         });
 
       if (supabaseError) {
@@ -134,6 +136,15 @@ const UploadModal = () => {
           {...register('title', { required: true })}
           placeholder="Song title"
         />
+
+        <Label htmlFor="priceId">Price Id</Label>
+        <Input
+          id="priceId"
+          disabled={isLoading}
+          {...register('priceId', { required: true })}
+          placeholder="Price object ID"
+        />
+
         <Label htmlFor="genre">Genre</Label>
 
         <Input

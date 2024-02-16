@@ -13,7 +13,7 @@ const getFavoriteBeats = async (): Promise<Beat[]> => {
 
   const { data } = await supabase
     .from('favorites')
-    .select('*, beats(*)')
+    .select('*, beats(*, prices(*, products(*)))')
     .eq('user_id', session?.user?.id)
     .order('created_at', { ascending: false });
 

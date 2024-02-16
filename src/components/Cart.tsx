@@ -18,10 +18,20 @@ import { useCart } from '@/hooks/useCart';
 import { ScrollArea } from './ui/scroll-area';
 import CartItem from './CartItem';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Button } from '@/components/ui/button';
+import { postData } from '@/lib/helpers';
+import { getStripe } from '@/lib/stripeClient';
+import { toast } from 'sonner';
+import useAuthModal from '@/hooks/useAuthModal';
+import { useUser } from '@/hooks/useUser';
 
 const Cart = () => {
-  const { items } = useCart();
+  const { items, clearCart } = useCart();
   const itemCount = items.length;
+
+  const { user, isLoading } = useUser();
+  const authModal = useAuthModal();
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -35,6 +45,24 @@ const Cart = () => {
   );
 
   const fee = 1;
+
+  const buy = async () => {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    try {
+      const { sessionId } = await postData({
+        url: '/api/create-checkout-session',
+        data: { items },
+      });
+
+      const stripe = await getStripe();
+      stripe?.redirectToCheckout({ sessionId });
+      clearCart();
+    } catch (error) {
+      toast.error((error as Error)?.message);
+    }
+  };
 
   return (
     <Sheet>
@@ -79,14 +107,15 @@ const Cart = () => {
 
               <SheetFooter>
                 <SheetTrigger asChild>
-                  <Link
+                  {/* <Link
                     href="/cart"
                     className={buttonVariants({
                       className: 'w-full',
                     })}
                   >
                     Continue to Checkout
-                  </Link>
+                  </Link> */}
+                  <Button onClick={buy}>Buy Now</Button>
                 </SheetTrigger>
               </SheetFooter>
             </div>

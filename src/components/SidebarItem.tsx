@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useUser } from '@/hooks/useUser';
 
 interface SidebarItemProps {
   icon: LucideIcon;
@@ -15,6 +18,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   active,
   href,
 }) => {
+  const { user } = useUser();
+
+  if (!user && label === 'Purchases') return null;
   return (
     <Link
       href={href}

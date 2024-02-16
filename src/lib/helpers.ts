@@ -1,4 +1,5 @@
 import { Price } from '@/types';
+import { CartItem } from '@/hooks/useCart';
 
 export const getURL = () => {
   let url =
@@ -17,7 +18,7 @@ export const postData = async ({
   data,
 }: {
   url: string;
-  data?: { price: Price };
+  data?: { items: CartItem[] };
 }) => {
   console.log('posting,', url, data);
 

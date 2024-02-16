@@ -8,6 +8,7 @@ import { useUser } from '@/hooks/useUser';
 import MediaItem from '@/components/MediaItem';
 import LikeButton from '@/components/LikeButton';
 import useOnPlay from '@/hooks/useOnPlay';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface FavoriteContentProps {
   beats: Beat[];
@@ -48,6 +49,7 @@ const FavoriteContent: React.FC<FavoriteContentProps> = ({ beats }) => {
             <MediaItem onClick={(id) => onPlay(id)} data={beat} />
           </div>
           <LikeButton beatId={beat.id} />
+          <AddToCartButton beat={beat} />
         </div>
       ))}
     </div>

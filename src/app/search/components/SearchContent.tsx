@@ -4,6 +4,7 @@ import { Beat } from '@/types';
 import MediaItem from '@/components/MediaItem';
 import LikeButton from '@/components/LikeButton';
 import useOnPlay from '@/hooks/useOnPlay';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface SearchContentProps {
   beats: Beat[];
@@ -37,6 +38,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ beats }) => {
             <MediaItem onClick={(id: string) => onPlay(id)} data={beat} />
           </div>
           <LikeButton beatId={beat.id} />
+          <AddToCartButton beat={beat} />
         </div>
       ))}
     </div>

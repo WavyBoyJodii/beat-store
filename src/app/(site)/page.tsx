@@ -1,5 +1,6 @@
 import getBeats from '@/actions/getBeats';
 import Header from '@/components/Header';
+import MainDisplay from './components/MainDisplay';
 
 export const revalidate = 0;
 
@@ -10,6 +11,9 @@ export default async function Home() {
       <Header>
         <div></div>
       </Header>
+      <div className=" mt-2 mb-7 px-6">
+        <MainDisplay beats={beats} />
+      </div>
     </div>
   );
 }

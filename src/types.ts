@@ -18,15 +18,6 @@ export interface Product {
   metadata?: Stripe.Metadata;
 }
 
-export interface Beat {
-  id: string;
-  producer: string;
-  title: string;
-  beat_path: string;
-  image_path: string;
-  product_id: string;
-}
-
 export interface Price {
   id: string;
   product_id?: string;
@@ -40,6 +31,21 @@ export interface Price {
   trial_period_days?: number | null;
   metadata?: Stripe.Metadata;
   products?: Product;
+}
+
+export interface PriceWithProduct extends Price {
+  products: Product;
+}
+
+export interface Beat {
+  id: string;
+  producer: string;
+  title: string;
+  beat_path: string;
+  image_path: string;
+  product_id: string;
+  price_id: string;
+  prices: PriceWithProduct;
 }
 
 export interface Customer {
@@ -103,6 +109,7 @@ export const uploadSchema = z.object({
             (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
             '.jpg, .jpeg, .png and .webp files are accepted.'
           ),
+  priceId: z.string().min(1, 'must be atleast 1 character long'),
 });
 
 export type ZUploadSchema = z.infer<typeof uploadSchema>;

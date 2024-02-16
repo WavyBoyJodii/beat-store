@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, Search, User, ShoppingCart } from 'lucide-react';
+import { Home, Search, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
@@ -60,13 +60,27 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
     }
   };
 
-  // TODO: add authmodal to header and make dropown menu dependent on User being logged in
-
   return (
-    <div
-      className={cn('h-fit bg-gradient-to-b from-emerald-800 p-6', className)}
-    >
-      <div className="w-full mb-4 flex items-center gap-x-4">
+    <div className={cn('h-fit bg-gradient-to-b from-slate-800 p-6', className)}>
+      <div className="w-full mb-4 flex items-center justify-between gap-x-4">
+        <div className="flex md:hidden gap-x-2 items-center">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => router.push('/')}
+            className=" rounded-full"
+          >
+            <Home />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => router.push('/search')}
+            className=" rounded-full"
+          >
+            <Search />
+          </Button>
+        </div>
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -79,6 +93,12 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             <DropdownMenuContent className="w-56">
               <DropdownMenuItem>
                 <Link href="/account">Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/purchases">Purchases</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/favorites">Favorites</Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
             </DropdownMenuContent>

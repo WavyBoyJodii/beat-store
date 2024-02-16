@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     });
 
     const lineItems = items.map((item: any) => ({
-      price: item.price.id,
+      price: item.product.id,
       quantity: quantity,
     }));
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, Search } from 'lucide-react';
+import { Home, Search, PackageCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
@@ -27,7 +27,7 @@ const Sidebar = ({ children }: SidebarProps) => {
       {
         icon: Home,
         label: 'Home',
-        active: pathname !== '/search',
+        active: pathname === '/',
         href: '/',
       },
       {
@@ -36,13 +36,21 @@ const Sidebar = ({ children }: SidebarProps) => {
         href: '/search',
         active: pathname === '/search',
       },
+      {
+        icon: PackageCheck,
+        label: 'Purchases',
+        href: '/purchases',
+        active: pathname === '/purchases',
+      },
     ],
     [pathname]
   );
 
   return (
     <div
-      className={cn('flex h-full', { 'h-[calc(100%-80px)]': player.activeId })}
+      className={cn('flex h-full py-2 px-2', {
+        'h-[calc(100%-80px)]': player.activeId,
+      })}
     >
       <div className=" hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p2">
         <Box>
@@ -57,7 +65,7 @@ const Sidebar = ({ children }: SidebarProps) => {
           <Library recentlyPlayed="nada" />
         </Box>
       </div>
-      <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
+      <main className="h-full flex-1 overflow-y-auto px-2">{children}</main>
     </div>
   );
 };

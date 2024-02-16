@@ -10,7 +10,7 @@ const getBeatById = async (id: string): Promise<Beat> => {
 
   const { data, error } = await supabase
     .from('beats')
-    .select('*')
+    .select('*, prices(*, products(*))')
     .eq('id', id)
     .single();
 

@@ -1,11 +1,13 @@
 import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/utils';
-import { Price, Product } from '@/types';
+import { Price, Product, PriceWithProduct } from '@/types';
 import { ImageIcon, X } from 'lucide-react';
 import Image from 'next/image';
 
-const CartItem = ({ product }: { product: Price }) => {
+const CartItem = ({ product }: { product: PriceWithProduct }) => {
   const { removeItem } = useCart();
+
+  console.log(`logging product object ${JSON.stringify(product)}`);
 
   return (
     <div className="space-y-3 py-2">
@@ -22,7 +24,7 @@ const CartItem = ({ product }: { product: Price }) => {
 
           <div className="flex flex-col self-start">
             <span className="line-clamp-1 text-sm font-medium mb-1">
-              {product.description}
+              {product.products.name}
             </span>
 
             <div className="mt-4 text-xs text-muted-foreground">

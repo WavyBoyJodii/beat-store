@@ -34,16 +34,18 @@ const Library: React.FC<LibraryProps> = ({ recentlyPlayed }) => {
           <ListMusic className=" text-neutral-400" size={26} />
           <p className="text-neutral-400 font-medium text-md">Your Library</p>
         </div>
-        <FilePlus2
-          onClick={onClick}
-          size={20}
-          className="
+        {user?.id === process.env.NEXT_PUBLIC_MAIN_USER_ID ? (
+          <FilePlus2
+            onClick={onClick}
+            size={20}
+            className="
             text-neutral-400 
             cursor-pointer 
             hover:text-white 
             transition
           "
-        />
+          />
+        ) : null}
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
         <ListItem name="Favorites" image="/images/star.jpg" href="favorites" />

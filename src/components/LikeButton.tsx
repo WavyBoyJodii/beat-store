@@ -71,7 +71,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ beatId }) => {
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success('Success');
+        toast.success('Added to Favorites');
       }
     }
 
@@ -87,7 +87,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ beatId }) => {
       "
       onClick={handleLike}
     >
-      <Icon color={isLiked ? '#22c55e' : 'white'} size={25} />
+      <Icon color={isLiked ? '#37C6FF' : 'white'} size={25} />
     </button>
   );
 };

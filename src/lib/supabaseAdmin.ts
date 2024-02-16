@@ -98,4 +98,41 @@ const copyBillingDetailsToCustomer = async (
   if (error) throw error;
 };
 
-export { upsertProductRecord, upsertPriceRecord, createOrRetrieveCustomer };
+const addToPurchasedBeats = async (
+  stripeCustomerId: string,
+  priceId: string
+) => {
+  const { data, error } = await supabaseAdmin
+    .from('beats')
+    .select('id')
+    .eq('price_id', priceId)
+    .single();
+  if (error || !data.id) {
+    return console.log('this id does not have a beat associated with it');
+  }
+  const purchasedBeatId = data.id;
+
+  const { data: customerData, error: customerError } = await supabaseAdmin
+    .from('customers')
+    .select('id')
+    .eq('stripe_customer_id', stripeCustomerId)
+    .single();
+  if (customerError || !customerData.id) {
+    return console.log('There is no User to match this stripe customer');
+  }
+
+  const userId = customerData.id;
+
+  const { error: supabaseError } = await supabaseAdmin
+    .from('purchased_beats')
+    .insert([{ beat_id: purchasedBeatId, user_id: userId }]);
+  if (supabaseError) throw supabaseError;
+  console.log(`new beat added to Purchased Beats for user ${userId}`);
+};
+
+export {
+  upsertProductRecord,
+  upsertPriceRecord,
+  createOrRetrieveCustomer,
+  addToPurchasedBeats,
+};

@@ -17,7 +17,7 @@ const getBeatsByTitle = async (title: string): Promise<Beat[]> => {
 
   const { data, error } = await supabase
     .from('beats')
-    .select('*')
+    .select('*, prices(*, products(*))')
     .ilike('title', `%${title}%`)
     .order('created_at', { ascending: false });
 
