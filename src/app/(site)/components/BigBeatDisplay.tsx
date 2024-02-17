@@ -24,7 +24,7 @@ const BigBeatDisplay: React.FC<BigBeatDisplayProps> = ({ beat, onClick }) => {
   };
 
   return (
-    <div className=" flex flex-col lg:flex-row bg-black h-3/4 lg:h-96 w-full rounded-xl gap-10">
+    <div className=" flex flex-col lg:flex-row bg-black h-fit lg:h-96 w-full rounded-xl gap-10">
       <div className=" flex h-44 lg:h-full w-fit lg:w-full p-4 lg:p-8 justify-center place-self-center items-center">
         <PlayButton onClick={() => onClick(beat.id)} />
         <div className=" flex flex-col gap-3 w-auto lg:w-full">

@@ -23,7 +23,7 @@ const MainDisplay: React.FC<MainDisplayProps> = ({ beats }) => {
   }
 
   return (
-    <div className=" w-full h-1/3 p-10">
+    <div className=" w-full h-fit md:h-1/3 p-10">
       <Carousel
         plugins={[
           Autoplay({
