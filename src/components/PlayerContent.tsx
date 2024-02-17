@@ -13,6 +13,7 @@ import usePlayer from '@/hooks/usePlayer';
 import LikeButton from './LikeButton';
 import MediaItem from './MediaItem';
 import Slider from './Slider';
+import AddToCartButton from './AddToCartButton';
 
 interface PlayerContentProps {
   beat: Beat;
@@ -98,6 +99,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ beat, beatUrl }) => {
         <div className="flex items-center gap-x-4">
           <MediaItem data={beat} />
           <LikeButton beatId={beat.id} />
+          <AddToCartButton beat={beat} />
         </div>
       </div>
 
