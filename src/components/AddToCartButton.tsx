@@ -16,7 +16,11 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ beat }) => {
   };
 
   return (
-    <Button className="" variant={'default'} onClick={addBeatToCart}>
+    <Button
+      className=" w-24 md:w-auto"
+      variant={'default'}
+      onClick={addBeatToCart}
+    >
       Add To Cart
     </Button>
   );
