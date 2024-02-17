@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: 'ajgslhsuanxjykabjzbu.supabase.co',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'files.stripe.com',
+        port: '',
+      },
     ],
   },
 };
