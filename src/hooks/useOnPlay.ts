@@ -11,9 +11,9 @@ const useOnPlay = (beats: Beat[]) => {
   const { subscription, user } = useUser();
 
   const onPlay = (id: string) => {
-    if (!user) {
-      return authModal.onOpen();
-    }
+    // if (!user) {
+    //   return authModal.onOpen();
+    // }
 
     player.setId(id);
     player.setIds(beats.map((beat) => beat.id));
