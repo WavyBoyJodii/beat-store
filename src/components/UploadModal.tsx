@@ -141,6 +141,7 @@ const UploadModal = () => {
         <Input
           id="priceId"
           disabled={isLoading}
+          autoComplete="off"
           {...register('priceId', { required: true })}
           placeholder="Price object ID"
         />
