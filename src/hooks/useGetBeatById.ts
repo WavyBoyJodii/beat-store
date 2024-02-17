@@ -18,7 +18,7 @@ const useGetBeatById = (id?: string) => {
     const fetchBeat = async () => {
       const { data, error } = await supabaseClient
         .from('beats')
-        .select('*')
+        .select('*, prices(*, products(*))')
         .eq('id', id)
         .single();
 
