@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 const CartItem = ({ product }: { product: PriceWithProduct }) => {
   const { removeItem } = useCart();
+  const image = product.products.image;
 
   console.log(`logging product object ${JSON.stringify(product)}`);
 
@@ -14,12 +15,21 @@ const CartItem = ({ product }: { product: PriceWithProduct }) => {
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
-            <div className="flex h-full items-center justify-center bg-secondary">
-              <ImageIcon
-                aria-hidden="true"
-                className="h-4 w-4 text-muted-foreground"
+            {typeof image === 'string' ? (
+              <Image
+                src={image}
+                alt={product.products.name!}
+                fill
+                className="absolute object-cover"
               />
-            </div>
+            ) : (
+              <div className="flex h-full items-center justify-center bg-secondary">
+                <ImageIcon
+                  aria-hidden="true"
+                  className="h-4 w-4 text-muted-foreground"
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col self-start">
