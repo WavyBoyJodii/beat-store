@@ -61,7 +61,12 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   };
 
   return (
-    <div className={cn('h-fit bg-gradient-to-b from-slate-800 p-6', className)}>
+    <div
+      className={cn(
+        'h-fit bg-gradient-to-b from-slate-800 p-6 sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-30',
+        className
+      )}
+    >
       <div className="w-full mb-4 flex items-center justify-between gap-x-4">
         <div className="flex md:hidden gap-x-2 items-center">
           <Button
@@ -91,9 +96,6 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuItem>
-                <Link href="/account">Profile</Link>
-              </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href="/purchases">Purchases</Link>
               </DropdownMenuItem>
